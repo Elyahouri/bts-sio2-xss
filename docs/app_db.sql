@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 20, 2019 at 10:35 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Hôte : db
+-- Généré le : mar. 13 sep. 2022 à 13:42
+-- Version du serveur : 10.5.8-MariaDB-1:10.5.8+maria~focal
+-- Version de PHP : 8.0.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,92 +18,80 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sql_injection`
+-- Base de données : `app_db`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Structure de la table `comment`
 --
 
 CREATE TABLE `comment` (
-                            `id` int(11) NOT NULL,
-                            `name` varchar(255) NOT NULL,
-                            `body` varchar(255) NOT NULL
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `body` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `comments`
+-- Déchargement des données de la table `comment`
 --
 
 INSERT INTO `comment` (`id`, `name`, `body`) VALUES
-                                                  (1, 'salim anvarov', 'look at that!'),
-                                                  (2, 'advanced hacker', '');
+(1, 'Limmy Lesbieraufrai', 'Le premier commentaire'),
+(2, 'Evy Damant', 'Ceci est un deuxieme contenu de commentaire');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `posts`
---
-
-CREATE TABLE `post` (
-                         `id` int(11) NOT NULL,
-                         `name` varchar(255) NOT NULL,
-                         `data` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
+-- Structure de la table `user`
 --
 
 CREATE TABLE `user` (
-                         `id` int(11) NOT NULL,
-                         `email` varchar(255) NOT NULL,
-                         `name` varchar(255) NOT NULL,
-                         `password` varchar(255) NOT NULL
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id`, `email`, `name`, `password`) VALUES
-    (1, 'salim.anvarov@yahoo.com', '', '');
+(1, 'salim.anvarov@yahoo.com', '', '');
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `comments`
+-- Index pour la table `comment`
 --
 ALTER TABLE `comment`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Index pour la table `user`
 --
 ALTER TABLE `user`
-    ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `comments`
+-- AUTO_INCREMENT pour la table `comment`
 --
 ALTER TABLE `comment`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

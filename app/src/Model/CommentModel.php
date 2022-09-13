@@ -35,4 +35,11 @@ class CommentModel
         $request->execute(['name' => $comment->getName(), 'body' => $comment->getBody()]);
     }
 
+    public function truncate(){
+        $resetRequest = $this->bdd->prepare('TRUNCATE TABLE comment');
+        $resetRequest->execute();
+
+        $popuplateRequest = $this->bdd->prepare("INSERT INTO `comment` (`id`, `name`, `body`) VALUES (1, 'Limmy Lesbieraufrai', 'Le premier commentaire'),(2, 'Evy Damant', 'Ceci est un deuxieme contenu de commentaire');");
+        $popuplateRequest->execute();
+    }
 }

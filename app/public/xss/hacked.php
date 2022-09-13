@@ -4,10 +4,10 @@ file_put_contents('mycookies.text', $cookie);
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>BTS SIO 2 - Failles XSS - Hacked Page !</title>
 </head>
 <body>
 

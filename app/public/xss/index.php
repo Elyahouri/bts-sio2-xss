@@ -27,10 +27,10 @@ if (isset($_POST['submit'])) {
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>BTS SIO 2 - Failles XSS - Formulaire</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
@@ -38,46 +38,50 @@ if (isset($_POST['submit'])) {
 <div class="container">
     <div class="row py-4">
         <div class="col mb-2">
-            <a class="btn btn-danger" href="../index.php"> Back </a>
+            <a class="btn btn-danger" href="../index.php"> Retour </a>
         </div>
         <hr/>
         <div class="col">
             <div class="card">
-                <div class="card-header">Make Your Comment</div>
+                <div class="card-header"><b>Commentaires</b></div>
                 <div class="card-body">
-                    <form action="" method="post" autocomplete="off">
-                        <div class="form-group">
-                            <label for="Name">Name</label>
-                            <input type="text" name="name" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="comment">Comment</label>
-                            <textarea name="body" id="" cols="30" rows="10" class="form-control"></textarea>
-                        </div>
-                        <input class="btn btn-success mt-2" type="submit" name="submit">
-                    </form>
+                    <table class="table table-striped table-responsive table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Commentaire</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        foreach ($comments as $comment) {
+                            echo "<tr>";
+                            echo "<td>" . $comment->getName() . "</td>";
+                            echo "<td>" . $comment->getBody() . "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                        </tbody>
+                    </table>
                     <hr/>
                     <div class="card">
-                        <div class="card-header">Comments</div>
+                        <div class="card-header">
+                            Publier un commentaire
+                        </div>
                         <div class="card-body">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Body</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        foreach ($comments as $comment) {
-                                            echo "<tr>";
-                                            echo "<td>" . $comment->getName() . "</td>";
-                                            echo "<td>" . $comment->getBody() . "</td>";
-                                            echo "</tr>";
-                                        }
-                                    ?>
-                                </tbody>
-                            </table>
+                            <form action="" method="post" autocomplete="off">
+                                <div class="form-group">
+                                    <label for="name">Nom</label>
+                                    <input id="name" type="text" name="name" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment">Commentaire</label>
+                                    </label><textarea name="body" id="comment" cols="30" rows="5" class="form-control"></textarea>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <input class="btn btn-success mt-2" type="submit" name="submit">
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
