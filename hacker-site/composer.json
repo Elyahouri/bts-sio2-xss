@@ -1,0 +1,17 @@
+{
+    "name": "jpechberty/bts-sio2-xss",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Julien Pechberty"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.4",
+        "ext-pdo": "*"
+    }
+}
