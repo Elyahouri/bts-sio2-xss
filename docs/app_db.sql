@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `comments`
 --
 
-CREATE TABLE `comments` (
+CREATE TABLE `comment` (
                             `id` int(11) NOT NULL,
                             `name` varchar(255) NOT NULL,
                             `body` varchar(255) NOT NULL
@@ -38,7 +38,7 @@ CREATE TABLE `comments` (
 -- Dumping data for table `comments`
 --
 
-INSERT INTO `comments` (`id`, `name`, `body`) VALUES
+INSERT INTO `comment` (`id`, `name`, `body`) VALUES
                                                   (1, 'salim anvarov', 'look at that!'),
                                                   (2, 'advanced hacker', '');
 
@@ -48,7 +48,7 @@ INSERT INTO `comments` (`id`, `name`, `body`) VALUES
 -- Table structure for table `posts`
 --
 
-CREATE TABLE `posts` (
+CREATE TABLE `post` (
                          `id` int(11) NOT NULL,
                          `name` varchar(255) NOT NULL,
                          `data` varchar(255) NOT NULL
@@ -60,7 +60,7 @@ CREATE TABLE `posts` (
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `user` (
                          `id` int(11) NOT NULL,
                          `email` varchar(255) NOT NULL,
                          `name` varchar(255) NOT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `name`, `password`) VALUES
+INSERT INTO `user` (`id`, `email`, `name`, `password`) VALUES
     (1, 'salim.anvarov@yahoo.com', '', '');
 
 --
@@ -81,13 +81,13 @@ INSERT INTO `users` (`id`, `email`, `name`, `password`) VALUES
 --
 -- Indexes for table `comments`
 --
-ALTER TABLE `comments`
+ALTER TABLE `comment`
     ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
 --
-ALTER TABLE `users`
+ALTER TABLE `user`
     ADD PRIMARY KEY (`id`);
 
 --
@@ -97,13 +97,13 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for table `comments`
 --
-ALTER TABLE `comments`
+ALTER TABLE `comment`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `users`
+ALTER TABLE `user`
     MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
