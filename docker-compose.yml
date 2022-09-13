@@ -13,6 +13,7 @@ services:
       - ./docker/php/vhosts:/etc/apache2/sites-enabled
       - ./app:/var/www
     restart: always
+    command: bash -c 'cp _.env.example .env'
     networks: [dev]
 
   #app
@@ -24,6 +25,7 @@ services:
       - ./docker/php/vhosts:/etc/apache2/sites-enabled
       - ./hacker-site:/var/www
     restart: always
+    command: bash -c 'cp _.env.example .env'
     networks: [ dev ]
 
   ##########################
