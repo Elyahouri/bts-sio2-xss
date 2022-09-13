@@ -9,8 +9,9 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__ . "/../../");
 $dotenv->load();
 
-$date = new DateTime('+1 day');
-setcookie('password', 'ilovesecrets', $date->getTimestamp());
+//$date = new DateTime('+1 day');
+//setcookie('password', 'ilovesecrets', $date->getTimestamp(), "","",false,true);
+setcookie('password', 'ilovesecrets');
 
 $commentModel = new CommentModel();
 $comments = $commentModel->fetchAll();
