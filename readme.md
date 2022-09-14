@@ -1,4 +1,4 @@
-# BTS SIO - Faille XSS et sécurisaiton de formulaire
+# BTS SIO - Faille XSS et sécurisation de formulaire
 
 ## installation
 
