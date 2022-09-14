@@ -38,10 +38,28 @@ class HackController extends AbstractController
             ];
         }
         return $this->render('hack/index.html.twig', [
-            'controller_name' => 'HackController',
             'storedCookies'=>$this->cookieRecordRepository->findAll(),
             "cookieFiles"=>$cookieFiles
         ]);
+    }
+
+    #[Route('/hack/clean', name: 'app_hack_clean')]
+    public function clean(): Response
+    {
+        $cookieFileList = scandir(self::STORAGE_PATH);
+        array_splice($cookieFileList,0,2);
+
+
+        foreach ($this->cookieRecordRepository->findAll() as $record){
+            $this->cookieRecordRepository->remove($record,true);
+        }
+
+        foreach($cookieFileList as $file){
+            unlink(self::STORAGE_PATH.$file);
+        }
+
+
+        return $this->redirectToRoute('app_hack');
     }
 
     #[Route('/hack/cookies/files/{filename}', name: 'app_hack_cookie_file_content')]
