@@ -19,10 +19,10 @@ services:
   #app
   hacker-site:
     container_name: ${CONTAINER_PREFIX}-hacker-site
-    build: ./docker/php
+    build: ./docker/php-api
     ports: [ "8001:80" ]
     volumes:
-      - ./docker/php/vhosts:/etc/apache2/sites-enabled
+      - ./docker/php-api/vhosts:/etc/apache2/sites-enabled
       - ./hacker-site:/var/www
     restart: always
     #command: bash -c 'cp _.env.example .env'

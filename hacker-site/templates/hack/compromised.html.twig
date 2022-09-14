@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} Compromised !{% endblock %}
+
+{% block body %}
+    <div class="row py-4">
+        <div class="col">
+            <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading">Compromised !</h4>
+                <p>{{ message }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
