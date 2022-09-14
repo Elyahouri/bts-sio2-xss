@@ -26,7 +26,7 @@
                             <td>{{ c.id }}</td>
                             <td>{{ c.createdAt ? c.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                             <td>
-                                <a class="btn btn-primary" href="#">show</a>
+                                <a class="btn btn-primary" href="{{ path('app_hack_cookie_record',{'id':c.id}) }}">show</a>
                             </td>
                         </tr>
                     {% else %}
@@ -56,7 +56,7 @@
                             <td>{{ cf.createdAt | date('Y-m-d H:i:s') }}</td>
                             <td>{{ cf.name }}</td>
                             <td>
-                                <a class="btn btn-primary" href="#">show</a>
+                                <a class="btn btn-primary" href="{{ path('app_hack_cookie_file_content',{'filename':cf.name}) }}">show</a>
                             </td>
                         </tr>
                     {% else %}
