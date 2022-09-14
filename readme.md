@@ -2,8 +2,14 @@
 
 ## installation
 
-renommer _.env.example en .env 
+### Création des fichiers environnement
 
-docker compose up -d
+`cp _.env.example .env && cp app/_.env.example app/.env && cp hacker-site/_.env.example hacker-site/.env`
 
-se connecter au container app pour executer composer install
+### Démarrage des services
+
+`docker compose up -d`
+
+### Installation des librairies composer
+
+`docker exec -it secure-xss-app composer install && docker exec -it secure-xss-hacker-site composer install`
