@@ -32,9 +32,6 @@ class Operation
     private int $time;
 
     #[Groups(["post:Operation"])]
-    private ?string $type;
-
-    #[Groups(["post:Operation"])]
     private ?string $raw;
 
     #[Groups(["post:Operation"])]
@@ -64,24 +61,6 @@ class Operation
     public function setTime(int $time): Operation
     {
         $this->time = $time;
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    /**
-     * @param string|null $type
-     * @return Operation
-     */
-    public function setType(?string $type): Operation
-    {
-        $this->type = $type;
         return $this;
     }
 

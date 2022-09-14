@@ -4,7 +4,8 @@ require __DIR__ . '/../../vendor/autoload.php';
 use App\Entity\Comment;
 use App\Model\CommentModel;
 use Dotenv\Dotenv;
-
+session_start();
+$_SESSION["key"] = "Ma value";
 // Gestion des fichiers environnement
 $dotenv = Dotenv::createImmutable(__DIR__ . "/../../");
 $dotenv->load();
@@ -69,7 +70,7 @@ if (isset($_POST['submit'])) {
                             Publier un commentaire
                         </div>
                         <div class="card-body">
-                            <form action="" method="post" autocomplete="off">
+                            <form action="" method="post" id="commentForm" autocomplete="off">
                                 <div class="form-group">
                                     <label for="name">Nom</label>
                                     <input id="name" type="text" name="name" class="form-control">
@@ -91,6 +92,7 @@ if (isset($_POST['submit'])) {
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>`
+<script src="index.js"></script>
 </body>
 </html>

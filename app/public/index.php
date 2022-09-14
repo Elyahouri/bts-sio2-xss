@@ -18,6 +18,7 @@
                     </div>
                     <hr/>
                     <a class="btn btn-outline-danger" href="reset.php" aria-current="page">Réinitialisation BDD</a>
+                    <a class="btn btn-outline-secondary" href="http://localhost:8001/hack" aria-current="page">Go to Hacker site</a>
 
                 </div>
             </div>
