@@ -13,6 +13,22 @@ class userModel
         $this->bdd = DatabaseService::getConnect();
     }
 
+    public function fetchAll(): array
+    {
+        $request = $this->bdd->prepare('SELECT * FROM user');
+        $request->execute();
+        $commentsArray = [];
+
+        foreach ($request->fetchAll() as $value)
+        {
+            $user = new User($value["id"],$value["name"],$value["email"],$value["password"]);
+            $usersArray[] = $user;
+        }
+
+        return $usersArray;
+
+    }
+
     public function create(User $user): void
     {
         $request = $this->bdd->prepare('INSERT INTO user(email,name, password) VALUES(:email, :name, :password)');

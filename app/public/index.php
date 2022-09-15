@@ -15,7 +15,8 @@
                     <div class="btn-group">
                         <a class="btn btn-outline-primary" href="/xss/form-post.php" aria-current="page">Faille XSS Formulaire Methode POST</a>
                         <a class="btn btn-outline-primary" href="/xss/form-get.php" aria-current="page">Faille XSS Formulaire Methode GET</a>
-                        <a class="btn btn-outline-primary" href="/secure-form/index.php" aria-current="page">Sécurisation de formulaire</a>
+                        <a class="btn btn-outline-primary" href="/secure-form/index.php" aria-current="page">Sécurisation de formulaire User</a>
+                        <a class="btn btn-outline-primary" href="/secure-form/list-users.php" aria-current="page">Liste des utilisateurs</a>
                     </div>
                     <hr/>
                     <a class="btn btn-outline-danger" href="reset.php" aria-current="page">Réinitialisation BDD</a>
