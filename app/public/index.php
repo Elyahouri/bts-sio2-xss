@@ -13,7 +13,8 @@
                 <div class="card-header">Links</div>
                 <div class="card-body">
                     <div class="btn-group">
-                        <a class="btn btn-outline-primary" href="/xss/index.php" aria-current="page">Failles XSS</a>
+                        <a class="btn btn-outline-primary" href="/xss/form-post.php" aria-current="page">Faille XSS Formulaire Methode POST</a>
+                        <a class="btn btn-outline-primary" href="/xss/form-get.php" aria-current="page">Faille XSS Formulaire Methode GET</a>
                         <a class="btn btn-outline-primary" href="/secure-form/index.php" aria-current="page">Sécurisation de formulaire</a>
                     </div>
                     <hr/>

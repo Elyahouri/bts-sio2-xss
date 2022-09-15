@@ -4,14 +4,12 @@ require __DIR__ . '/../../vendor/autoload.php';
 use App\Entity\Comment;
 use App\Model\CommentModel;
 use Dotenv\Dotenv;
-session_start();
-$_SESSION["key"] = "Ma value";
+
 // Gestion des fichiers environnement
 $dotenv = Dotenv::createImmutable(__DIR__ . "/../../");
 $dotenv->load();
 
-//$date = new DateTime('+1 day');
-//setcookie('password', 'ilovesecrets', $date->getTimestamp(), "","",false,true);
+
 setcookie('password', 'ilovesecrets');
 
 $commentModel = new CommentModel();
@@ -20,10 +18,9 @@ $comments = $commentModel->fetchAll();
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $body = $_POST['body'];
-    //$body =  htmlspecialchars($_POST['body'], ENT_QUOTES);
     $newComment = new Comment(null, $name, $body);
     $commentModel->create($newComment);
-    header("Location: ../xss/index.php");
+    header("Location: ../xss/form-post.php");
 }
 ?>
 
@@ -31,7 +28,7 @@ if (isset($_POST['submit'])) {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>BTS SIO 2 - Failles XSS - Formulaire</title>
+    <title>BTS SIO 2 - Failles XSS - Formulaire POST</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
@@ -46,25 +43,6 @@ if (isset($_POST['submit'])) {
             <div class="card">
                 <div class="card-header"><b>Commentaires</b></div>
                 <div class="card-body">
-                    <table class="table table-striped table-responsive table-bordered">
-                        <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Commentaire</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        foreach ($comments as $comment) {
-                            echo "<tr>";
-                            echo "<td>" . $comment->getName() . "</td>";
-                            echo "<td>" . $comment->getBody() . "</td>";
-                            echo "</tr>";
-                        }
-                        ?>
-                        </tbody>
-                    </table>
-                    <hr/>
                     <div class="card">
                         <div class="card-header">
                             Publier un commentaire
@@ -85,6 +63,26 @@ if (isset($_POST['submit'])) {
                             </form>
                         </div>
                     </div>
+                    <hr/>
+                    <table class="table table-striped table-responsive table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Commentaire</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        foreach ($comments as $comment) {
+                            echo "<tr>";
+                            echo "<td>" . $comment->getName() . "</td>";
+                            echo "<td>" . $comment->getBody() . "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                    <hr/>
                 </div>
             </div>
         </div>
@@ -93,6 +91,5 @@ if (isset($_POST['submit'])) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
         crossorigin="anonymous"></script>`
-<script src="index.js"></script>
 </body>
 </html>

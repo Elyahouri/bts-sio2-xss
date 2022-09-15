@@ -16,34 +16,28 @@
         <div class="col">
             <div class="card">
                 <div class="card-header"><b>Formulaire</b></div>
-                <form action="action.php" method="post" autocomplete="off">
+                <form action="action.php" method="post" id="userForm" name="userForm" autocomplete="off">
                     <div class="card-body">
-                        <div class="form-group">
-                            <label for="name">Prénom</label>
-                            <input id="name" type="text" name="name" class="form-control">
-                        </div>
                         <div class="form-group">
                             <label for="name">Nom</label>
                             <input id="name" type="text" name="name" class="form-control">
+                            <div class="invalid-feedback">
+                                invalid input
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="age">Age</label>
-                            <input id="age" type="text" name="age" class="form-control">
+                            <label for="email">Adresse Email</label>
+                            <input id="email" type="text" name="email" class="form-control">
+                            <div class="invalid-feedback">
+                                invalid input
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="name">Adresse Email</label>
-                            <input id="name" type="text" name="name" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Ville</label>
-                            <input id="name" type="text" name="name" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="pays" class="form-label">Pays</label>
-                            <select class="form-select" id="pays">
-                                <option selected disabled value="">Choose...</option>
-                                <option>...</option>
-                            </select>
+                            <label for="password">Password</label>
+                            <input id="password" type="text" name="password" class="form-control">
+                            <div class="invalid-feedback">
+                                invalid input
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -59,5 +53,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
         crossorigin="anonymous"></script>
+<script src="index.js"></script>
 </body>
 </html>
